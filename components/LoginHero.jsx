@@ -18,6 +18,7 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
+import { useUser } from '@auth0/nextjs-auth0'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -27,6 +28,8 @@ const navigation = [
 ]
 
 export default function Example() {
+  const { user, isLoading } = useUser()
+
   return (
     <div className="relative overflow-hidden">
       <Popover as="header" className="relative">
@@ -60,17 +63,25 @@ export default function Example() {
                 ))}
               </div>
             </div>
-            <div className="hidden md:flex md:items-center md:space-x-6">
-              <a href="#" className="text-base font-medium text-white hover:text-gray-300">
-                Log in
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
-              >
-                Start free trial
-              </a>
-            </div>
+            {!isLoading && !user && (
+              <div className="hidden md:flex md:items-center md:space-x-6">
+                <a href="/api/auth/login"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+                >
+                  Log In / Sign Up
+                </a>
+              </div>
+            )}
+            {user && (
+              <div className="hidden md:flex md:items-center md:space-x-6">
+                <a
+                  href="/api/auth/logout"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+                >
+                  Log Out
+                </a>
+              </div>
+            )}
           </nav>
         </div>
 
@@ -123,7 +134,7 @@ export default function Example() {
                 <div className="mt-6 px-5">
                   <p className="text-center text-base font-medium text-gray-500">
                     Existing customer?{' '}
-                    <a href="#" className="text-gray-900 hover:underline">
+                    <a href="/api/auth/login" className="text-gray-900 hover:underline">
                       Login
                     </a>
                   </p>

@@ -28,6 +28,7 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
+import { getAccessToken } from '@auth0/nextjs-auth0'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -40,14 +41,14 @@ const navigation = [
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Sign Out', href: '/api/auth/logout' },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -229,7 +230,7 @@ export default function Example() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={user.picture}
                         alt=""
                       />
                     </Menu.Button>
@@ -274,7 +275,8 @@ export default function Example() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
                 <div className="py-4">
-                  <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+                  <pre>{JSON.stringify(user, null, 2)}</pre>
+                  {/* <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" /> */}
                 </div>
                 {/* /End replace */}
               </div>

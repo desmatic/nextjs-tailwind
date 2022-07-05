@@ -1,19 +1,22 @@
 import Head from 'next/head'
 import Dashboard from '../../components/Dashboard'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
-export default function Home() {
+export default function Home({ user }) {
   return (
     <>
       <Head>
         <title>
-          A better way to ship apps
+          Dashboard {user.nickname}
         </title>
         <meta
           name="description"
-          content="A better way to ship apps. "
+          content="Dashboard"
         />
       </Head>
-      <Dashboard />
+      <Dashboard user={user} />
     </>
   )
 }
+
+export const getServerSideProps = withPageAuthRequired()
