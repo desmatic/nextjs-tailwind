@@ -3,11 +3,12 @@ import Dashboard from '../../components/Dashboard'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
 export default function Home({ user }) {
+
   return (
     <>
       <Head>
         <title>
-          Dashboard {user.nickname}
+          Dashboard
         </title>
         <meta
           name="description"

@@ -28,7 +28,6 @@ import {
   XIcon,
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
-import { getAccessToken } from '@auth0/nextjs-auth0'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -275,7 +274,7 @@ export default function Example({ user }) {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}
                 <div className="py-4">
-                  <pre>{JSON.stringify(user, null, 2)}</pre>
+                  <pre>{user && JSON.stringify(user, null, 2)}</pre>
                   {/* <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" /> */}
                 </div>
                 {/* /End replace */}
