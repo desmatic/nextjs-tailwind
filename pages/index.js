@@ -4,7 +4,6 @@ import Pricing from '../components/Pricing'
 import Footer from '../components/Footer'
 import Blog from '../components/Blog'
 
-
 export default function Home() {
   return (
     <>
@@ -14,7 +13,7 @@ export default function Home() {
         </title>
         <meta
           name="description"
-          content="A better way to ship apps. "
+          content="A better way to ship apps."
         />
       </Head>
       <LoginHero />

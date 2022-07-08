@@ -231,6 +231,7 @@ export default function Example({ user }) {
                         className="h-8 w-8 rounded-full"
                         src={user.picture}
                         alt=""
+                        referrerPolicy="no-referrer"
                       />
                     </Menu.Button>
                   </div>
