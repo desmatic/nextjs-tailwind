@@ -29,6 +29,9 @@ import {
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
 
+import Hydration from './Hydration'
+import UserProfile from './UserProfile'
+
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'Team', href: '#', icon: UsersIcon, current: false },
@@ -277,7 +280,11 @@ export default function Example({ user }) {
                 <div className="py-4">
                   <pre>{user && JSON.stringify(user, null, 2)}</pre>
                   {/* <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" /> */}
+                  <Hydration>
+                    <pre>{user.nickname}</pre>
+                  </Hydration>
                 </div>
+                <UserProfile />
                 {/* /End replace */}
               </div>
             </div>
